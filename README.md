@@ -1,2 +1,2 @@
-# icecream2
+# icecream
 Home for my coding class
