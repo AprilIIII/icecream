@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, 
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    height: 40px;
+}
+, 
+ul.flex-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: tomato;
+    line-height: 40px;
+    list-style-type: none;
+
+}
+
+a {
+    /* These are the children elements */
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    
+}
