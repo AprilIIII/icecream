@@ -230,7 +230,10 @@ a:focus-visible {
 .frame__demos-title {
   display: block;
 }
-
+.filter-container{
+  background-color: black;
+  color: white;
+}
 .grid {
   grid-template-columns: repeat(8, 1fr);
   width: 100%;
