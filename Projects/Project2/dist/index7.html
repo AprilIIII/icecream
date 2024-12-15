@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid Scroll Animations | Demo 7 | Codrops</title>
+    <meta name="description" content="Various effects for images when scrolling a page.">
+    <meta name="keywords" content="scroll, effect, animation, image, gsap, lenis">
+    <meta name="author" content="Codrops">
+    <link rel="shortcut icon" href="/favicon.824cf0c5.ico">
+    <link rel="stylesheet" href="https://use.typekit.net/ont3ybf.css">
+    <link rel="stylesheet" type="text/css" href="/index.d046a61c.css">
+    <script src="/index7.37bb9926.js"></script><script>document.documentElement.className = "js";
+var supportsCssVars = function() {
+    var e, t = document.createElement("style");
+    return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e;
+};
+supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
+
+</script>
+    <script src="//tympanus.net/codrops/adpacks/analytics.js"></script>
+    <style>.filter-container {
+  z-index: 1000;
+  justify-content: center;
+  gap: 20px;
+  display: flex;
+  position: fixed;
+  bottom: -0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.filter-select {
+  border-radius: 4px;
+  min-width: 150px;
+  padding: 8px;
+}
+
+.grid__item.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+</style>
+  </head>
+
+  <body class="demo-7 loading">
+    <main>
+      <div class="frame">
+        <div class="frame__title">
+          <a aria-label="Back to the article" class="frame__title-back" href="https://tympanus.net/codrops/?p=63672">
+            <span class="oh__inner">Back to the article</span>
+            <svg width="18px" height="18px" viewbox="0 0 24 24">
+              <path d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="content">
+        <div class="filter-container">
+          <select class="filter-select" id="brandFilter">
+            <option value="">Brand</option>
+            <option value="Minotti">Minotti</option>
+            <option value="Poliform">Poliform</option>
+            <option value="Cassina">Cassina</option>
+            <option value="B&B Italia">B&B Italia</option>
+            <option value="HAY">HAY</option>
+            <option value="Gubi">Gubi</option>
+            <option value="Kar Studio">Kar Studio</option>
+            <option value="cappellini">cappellini</option>
+          </select>
+          <select class="filter-select" id="colorFilter">
+            <option value="">Color</option>
+            <option value="white">white</option>
+            <option value="black">black</option>
+            <option value="gray">gray</option>
+            <option value="beige">beige</option>
+            <option value="brown">brown</option>
+            <option value="red">red</option>
+            <option value="blue">blue</option>
+            <option value="green">green</option>
+            <option value="yellow">yellow</option>
+            <option value="orange">orange</option>
+            <option value="pink">pink</option>
+          </select>
+          <select class="filter-select" id="materialFilter">
+            <option value="">Material</option>
+            <option value="wood">wood</option>
+            <option value="metal">metal</option>
+            <option value="fabric">fabric</option>
+            <option value="leather">leather</option>
+            <option value="wool">wool</option>
+            <option value="fiberglass">fiberglass</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <script>const imageData = [
+    // Minotti
+    {
+        id: 1,
+        brand: "Minotti",
+        color: "gray",
+        material: "fabric/metal"
+    },
+    {
+        id: 2,
+        brand: "Minotti",
+        color: "Yellow",
+        material: "leather/metal"
+    },
+    {
+        id: 3,
+        brand: "Minotti",
+        color: "Green",
+        material: "fabric/wood"
+    },
+    {
+        id: 4,
+        brand: "Minotti",
+        color: "beige",
+        material: "fabric/metal"
+    },
+    {
+        id: 5,
+        brand: "Minotti",
+        color: "green",
+        material: "fabric/nylon"
+    },
+    {
+        id: 6,
+        brand: "Minotti",
+        color: "white",
+        material: "fabric/polyurethane"
+    },
+    {
+        id: 7,
+        brand: "Minotti",
+        color: "Dark brown",
+        material: "leather/metal"
+    },
+    // Poliform
+    {
+        id: 8,
+        brand: "Poliform",
+        color: "Dark brown",
+        material: "leather/polyurethane"
+    },
+    {
+        id: 9,
+        brand: "Poliform",
+        color: "beige",
+        material: "leather/polyurethane"
+    },
+    {
+        id: 10,
+        brand: "Poliform",
+        color: "gray",
+        material: "fabric/polyurethane"
+    },
+    {
+        id: 11,
+        brand: "Poliform",
+        color: "gray",
+        material: "fabric/polyurethane"
+    },
+    {
+        id: 12,
+        brand: "Poliform",
+        color: "brown",
+        material: "leather/wood"
+    },
+    {
+        id: 13,
+        brand: "Poliform",
+        color: "beige",
+        material: "leather/wood"
+    },
+    {
+        id: 14,
+        brand: "Poliform",
+        color: "yellow",
+        material: "leather/wood"
+    },
+    {
+        id: 15,
+        brand: "Poliform",
+        color: "beige",
+        material: "fabric/wood"
+    },
+    // Cassina
+    {
+        id: 16,
+        brand: "Cassina",
+        color: "black",
+        material: "fabric/metal"
+    },
+    {
+        id: 17,
+        brand: "Cassina",
+        color: "black",
+        material: "polyester/metal"
+    },
+    {
+        id: 18,
+        brand: "Cassina",
+        color: "brown",
+        material: "polyester/metal"
+    },
+    {
+        id: 19,
+        brand: "Cassina",
+        color: "blue",
+        material: "fiber/foam/wood"
+    },
+    {
+        id: 20,
+        brand: "Cassina",
+        color: "red/black",
+        material: "wood"
+    },
+    {
+        id: 21,
+        brand: "Cassina",
+        color: "orange",
+        material: "leather/metal"
+    },
+    {
+        id: 22,
+        brand: "Cassina",
+        color: "green",
+        material: "leather/metal"
+    },
+    {
+        id: 23,
+        brand: "Cassina",
+        color: "gray",
+        material: "foam/metal"
+    },
+    {
+        id: 24,
+        brand: "Cassina",
+        color: "green",
+        material: "fabric/foam/metal"
+    },
+    {
+        id: 25,
+        brand: "Cassina",
+        color: "blue",
+        material: "wool"
+    },
+    {
+        id: 26,
+        brand: "Cassina",
+        color: "brown",
+        material: "wood"
+    },
+    {
+        id: 27,
+        brand: "Cassina",
+        color: "black",
+        material: "foam/leather/metal"
+    },
+    {
+        id: 28,
+        brand: "Cassina",
+        color: "black",
+        material: "leather/metal"
+    },
+    {
+        id: 29,
+        brand: "Cassina",
+        color: "brown",
+        material: "wood/metal"
+    },
+    {
+        id: 30,
+        brand: "Cassina",
+        color: "red",
+        material: "polyurethane/metal"
+    },
+    {
+        id: 31,
+        brand: "Cassina",
+        color: "blue/red",
+        material: "leather/wood"
+    },
+    {
+        id: 32,
+        brand: "Cassina",
+        color: "yellow",
+        material: "fabric/wood"
+    },
+    {
+        id: 33,
+        brand: "Cassina",
+        color: "red",
+        material: "fabric/metal"
+    },
+    {
+        id: 34,
+        brand: "Cassina",
+        color: "white",
+        material: "fabric/foam/metal"
+    },
+    {
+        id: 35,
+        brand: "Cassina",
+        color: "black",
+        material: "leather/wood"
+    },
+    {
+        id: 36,
+        brand: "Cassina",
+        color: "brown",
+        material: "wood"
+    },
+    {
+        id: 37,
+        brand: "Cassina",
+        color: "blue/black",
+        material: "metal/fabric"
+    },
+    // B&B Italia
+    {
+        id: 38,
+        brand: "B&B Italia",
+        color: "blue",
+        material: "fabric/foam/polyethylene"
+    },
+    {
+        id: 39,
+        brand: "B&B Italia",
+        color: "red",
+        material: "fabric/foam"
+    },
+    {
+        id: 40,
+        brand: "B&B Italia",
+        color: "beige",
+        material: "metal/fabric"
+    },
+    {
+        id: 41,
+        brand: "B&B Italia",
+        color: "gray",
+        material: "fabric/wood"
+    },
+    {
+        id: 42,
+        brand: "B&B Italia",
+        color: "brown",
+        material: "foam/metal"
+    },
+    {
+        id: 43,
+        brand: "B&B Italia",
+        color: "white",
+        material: "fabric/polyethylene"
+    },
+    {
+        id: 44,
+        brand: "B&B Italia",
+        color: "blue",
+        material: "fabric/metal/wood"
+    },
+    {
+        id: 45,
+        brand: "B&B Italia",
+        color: "black",
+        material: "leather/wood"
+    },
+    {
+        id: 46,
+        brand: "B&B Italia",
+        color: "orange",
+        material: "fabric/metal"
+    },
+    {
+        id: 47,
+        brand: "B&B Italia",
+        color: "brown",
+        material: "leather/metal"
+    },
+    // HAY
+    {
+        id: 48,
+        brand: "HAY",
+        color: "green",
+        material: "wood"
+    },
+    {
+        id: 49,
+        brand: "HAY",
+        color: "red",
+        material: "fabric/metal"
+    },
+    {
+        id: 50,
+        brand: "HAY",
+        color: "orange/black",
+        material: "leather/wood"
+    },
+    {
+        id: 51,
+        brand: "HAY",
+        color: "black",
+        material: "leather/metal"
+    },
+    {
+        id: 52,
+        brand: "HAY",
+        color: "black/pink",
+        material: "fabric/wood"
+    },
+    {
+        id: 53,
+        brand: "HAY",
+        color: "gray",
+        material: "fabric/wood"
+    },
+    {
+        id: 54,
+        brand: "HAY",
+        color: "orange",
+        material: "leather/wood"
+    },
+    {
+        id: 55,
+        brand: "HAY",
+        color: "yellow",
+        material: "fabric/wood"
+    },
+    {
+        id: 56,
+        brand: "HAY",
+        color: "yellow",
+        material: "leather/wood"
+    },
+    {
+        id: 57,
+        brand: "HAY",
+        color: "black",
+        material: "fabric/metal"
+    },
+    // Gubi
+    {
+        id: 58,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/wood"
+    },
+    {
+        id: 59,
+        brand: "Gubi",
+        color: "black",
+        material: "wood"
+    },
+    {
+        id: 60,
+        brand: "Gubi",
+        color: "beige",
+        material: "leather/metal"
+    },
+    {
+        id: 61,
+        brand: "Gubi",
+        color: "green",
+        material: "fabric"
+    },
+    {
+        id: 62,
+        brand: "Gubi",
+        color: "black",
+        material: "wood"
+    },
+    {
+        id: 63,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/foam"
+    },
+    {
+        id: 64,
+        brand: "Gubi",
+        color: "brown",
+        material: "fabric/polyurethane"
+    },
+    {
+        id: 65,
+        brand: "Gubi",
+        color: "beige",
+        material: "fabric/foam/wood"
+    },
+    {
+        id: 66,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/wood"
+    },
+    {
+        id: 67,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/foam/wood"
+    },
+    {
+        id: 68,
+        brand: "Gubi",
+        color: "white/orange",
+        material: "fabric/metal"
+    },
+    {
+        id: 69,
+        brand: "Gubi",
+        color: "blue",
+        material: "fabric/metal"
+    },
+    {
+        id: 70,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/foam"
+    },
+    {
+        id: 71,
+        brand: "Gubi",
+        color: "beige",
+        material: "wood/wood"
+    },
+    {
+        id: 72,
+        brand: "Gubi",
+        color: "white/brown",
+        material: "wool/bamboo"
+    },
+    {
+        id: 73,
+        brand: "Gubi",
+        color: "beige",
+        material: "fabric/metal"
+    },
+    {
+        id: 74,
+        brand: "Gubi",
+        color: "white",
+        material: "fabric/bamboo"
+    },
+    // Kar Studio
+    {
+        id: 75,
+        brand: "Kar Studio",
+        color: "black",
+        material: "fiberglass"
+    },
+    {
+        id: 76,
+        brand: "Kar Studio",
+        color: "pink/white",
+        material: "fiberglass"
+    },
+    {
+        id: 77,
+        brand: "Kar Studio",
+        color: "brown/white",
+        material: "fiberglass/leather"
+    },
+    {
+        id: 78,
+        brand: "Kar Studio",
+        color: "white",
+        material: "wood"
+    },
+    {
+        id: 79,
+        brand: "Kar Studio",
+        color: "beige",
+        material: "fiberglass"
+    },
+    {
+        id: 80,
+        brand: "Kar Studio",
+        color: "black",
+        material: "wood"
+    },
+    // cappellini
+    {
+        id: 81,
+        brand: "cappellini",
+        color: "red",
+        material: "metal"
+    },
+    {
+        id: 82,
+        brand: "cappellini",
+        color: "green/red",
+        material: "fabric/metal"
+    },
+    {
+        id: 83,
+        brand: "cappellini",
+        color: "blue/black",
+        material: "fabric/metal"
+    },
+    {
+        id: 84,
+        brand: "cappellini",
+        color: "brown",
+        material: "leather"
+    },
+    {
+        id: 85,
+        brand: "cappellini",
+        color: "white",
+        material: "fiberglass"
+    },
+    {
+        id: 86,
+        brand: "cappellini",
+        color: "orange",
+        material: "fabric"
+    },
+    {
+        id: 87,
+        brand: "cappellini",
+        color: "brown",
+        material: "wood"
+    },
+    {
+        id: 88,
+        brand: "cappellini",
+        color: "white",
+        material: "fabric"
+    },
+    {
+        id: 89,
+        brand: "cappellini",
+        color: "red",
+        material: "fabric/metal"
+    },
+    {
+        id: 90,
+        brand: "cappellini",
+        color: "black",
+        material: "fabric/metal"
+    },
+    {
+        id: 91,
+        brand: "cappellini",
+        color: "red",
+        material: "fabric"
+    },
+    {
+        id: 92,
+        brand: "cappellini",
+        color: "black",
+        material: "fabric/metal"
+    }
+];
+function filterImages() {
+    const brand = document.getElementById("brandFilter").value;
+    const color = document.getElementById("colorFilter").value;
+    const material = document.getElementById("materialFilter").value;
+    document.querySelectorAll(".grid__item").forEach((item)=>{
+        const matchBrand = !brand || item.dataset.brand === brand;
+        const matchColor = !color || item.dataset.color.includes(color);
+        const matchMaterial = !material || item.dataset.material.includes(material);
+        if (matchBrand && matchColor && matchMaterial) item.classList.remove("hidden");
+        else item.classList.add("hidden");
+    });
+    window.dispatchEvent(new Event("scroll"));
+}
+function generateGridItems() {
+    let items = [];
+    let positions = new Set();
+    for(let i = 1; i <= imageData.length; i++){
+        let r, c;
+        do {
+            r = Math.floor(Math.random() * 40) + 1;
+            c = Math.floor(Math.random() * 8) + 1;
+        }while (positions.has(`${r},${c}`));
+        positions.add(`${r},${c}`);
+        const item = imageData[i - 1];
+        items.push(`
+					<div class="grid__item" style="--r: ${r}; --c: ${c}"
+						 data-brand="${item.brand}"
+						 data-color="${item.color}"
+						 data-material="${item.material}">                       
+					  <div class="grid__item-img" style="background-image: url('${item.id}.jpg')"></div>
+					</div>
+				  `);
+    }
+    document.write(items.join("\n"));
+}
+generateGridItems();
+window.addEventListener("load", ()=>{
+    document.getElementById("brandFilter").addEventListener("change", filterImages);
+    document.getElementById("colorFilter").addEventListener("change", filterImages);
+    document.getElementById("materialFilter").addEventListener("change", filterImages);
+});
+
+</script>
+        </div>
+
+        <div class="cover">
+          <h2 class="cover__title">MODERN CHAIR</h2>
+          <h3 class="cover__subtitle">COLLECTION</h3>
+        </div>
+      </div>
+    </main>
+    <script src="https://tympanus.net/codrops/adpacks/cda_sponsor.js"></script>
+    <script src="/index7.c1e9482f.js" defer=""></script>
+  </body>
+</html>
